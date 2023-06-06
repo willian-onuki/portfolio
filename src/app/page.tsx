@@ -1,9 +1,13 @@
-import Image from 'next/image'
+import Header from '@/components/Header'
+import Hero from '@/components/Hero'
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <h1>Hello world</h1>
+    <div className='bg-shape-500 h-screen text-primary-500 snap-y snap-mandatory overflow-scroll z-0'>
+      <Header />
+      <section id='hero' className='snap-center'>
+        <Hero />
+      </section>
     </div>
   )
 }
