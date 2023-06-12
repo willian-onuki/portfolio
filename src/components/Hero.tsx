@@ -2,7 +2,6 @@
 import React from 'react'
 import { Cursor, useTypewriter } from 'react-simple-typewriter'
 import BackgroundCircles from './BackgroundCircles'
-import Link from 'next/link'
 
 export default function Hero() {
   const [text, count] = useTypewriter({
@@ -23,18 +22,18 @@ export default function Hero() {
         </h1>
 
         <div className='pt-5'>
-          <Link href='#about'>
+          <a href='#about' >
             <button className='heroButton'>About</button>
-          </Link>
-          <Link href='#experience'>
+          </a>
+          <a href='#experiences'>
             <button className='heroButton'>Experience</button>
-          </Link>
-          <Link href='#skills'>
+          </a>
+          <a href='#skills'>
             <button className='heroButton'>Skills</button>
-          </Link>
-          <Link href='#projects'>
+          </a>
+          <a href='#projects'>
             <button className='heroButton'>Projects</button>
-          </Link>
+          </a>
         </div>
       </div>
     </div>
