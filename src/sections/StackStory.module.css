@@ -1,0 +1,145 @@
+.stack {
+  position: relative;
+  z-index: var(--z-content);
+  padding: calc(var(--section-pad) * 0.6) 0 var(--section-pad);
+}
+
+.head {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 40rem;
+}
+
+.steps {
+  display: grid;
+  margin-top: var(--space-7);
+}
+
+/* Cada passo ocupa quase uma tela: a camada fica em foco enquanto ele cruza
+   o centro. No celular o conteúdo vai para a metade de baixo (a stack fica
+   em cima). */
+.step {
+  min-height: 92svh;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 8svh;
+}
+
+.card {
+  display: grid;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: 34rem;
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-line);
+  background: rgb(12 12 14 / 0.72);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  transform: translateY(14px) scale(0.985);
+  transform-origin: 0 100%;
+  transition:
+    transform 0.9s var(--ease-out),
+    border-color 0.7s var(--ease-out),
+    box-shadow 0.9s var(--ease-out);
+}
+
+/* foco: borda em brasa e o card "assenta" — sem baixar a opacidade do texto
+   dos demais (continuam legíveis, contraste AA) */
+.step[data-active] .card {
+  transform: none;
+  border-color: rgb(255 106 43 / 0.45);
+  box-shadow: 0 0 0 1px rgb(255 106 43 / 0.12), 0 30px 80px -30px rgb(255 106 43 / 0.25);
+}
+
+.index {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.index span:first-child {
+  color: var(--color-accent);
+}
+
+.rule {
+  width: 2rem;
+  height: 1px;
+  background: var(--color-line-strong);
+}
+
+.title {
+  font-size: var(--fs-2xl);
+  letter-spacing: var(--tracking-display);
+  line-height: 1.05;
+}
+
+.text {
+  color: var(--color-text-muted);
+}
+
+.crosscut {
+  display: grid;
+  gap: var(--space-4);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-line);
+}
+
+.crosscutTitle {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.crosscutList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  font-size: var(--fs-lg);
+}
+
+.crosscutList li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.crosscutList li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+@media (min-width: 900px) and (min-aspect-ratio: 1/1) {
+  .step {
+    min-height: 88vh;
+    align-items: center;
+    padding-bottom: 0;
+  }
+
+  .card {
+    max-width: min(42%, 31rem);
+    padding: var(--space-6);
+  }
+
+  .crosscut {
+    grid-template-columns: 16rem 1fr;
+    align-items: baseline;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transform: none;
+  }
+}

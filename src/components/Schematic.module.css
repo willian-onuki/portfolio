@@ -1,0 +1,117 @@
+.schematic {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.dot {
+  fill: rgb(238 236 231 / 0.14);
+}
+
+.edge {
+  fill: none;
+  stroke: rgb(238 236 231 / 0.28);
+  stroke-width: 0.35;
+}
+
+.packet {
+  fill: none;
+  stroke: var(--ember-500);
+  stroke-width: 0.9;
+  stroke-linecap: round;
+  stroke-dasharray: 3 197;
+  stroke-dashoffset: 3;
+  filter: drop-shadow(0 0 1.2px rgb(255 106 43 / 0.9));
+  animation: packet 2.6s linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.reverse {
+  animation-name: packet-reverse;
+  stroke: var(--ember-300);
+}
+
+@keyframes packet {
+  from {
+    stroke-dashoffset: 3;
+  }
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+@keyframes packet-reverse {
+  from {
+    stroke-dashoffset: -100;
+  }
+  to {
+    stroke-dashoffset: 3;
+  }
+}
+
+.edgeLabel {
+  font-family: var(--font-mono);
+  font-size: 2.1px;
+  letter-spacing: 0.06em;
+  fill: rgb(238 236 231 / 0.5);
+  text-transform: uppercase;
+}
+
+.box {
+  fill: #121215;
+  stroke: rgb(238 236 231 / 0.3);
+  stroke-width: 0.35;
+  transition:
+    stroke var(--dur-base) var(--ease-out),
+    fill var(--dur-base) var(--ease-out);
+}
+
+.label {
+  font-family: var(--font-sans);
+  font-size: 3.1px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  fill: var(--bone);
+}
+
+.sub {
+  font-family: var(--font-mono);
+  font-size: 2.2px;
+  fill: rgb(238 236 231 / 0.55);
+}
+
+.accent .box {
+  fill: #1c120d;
+  stroke: var(--ember-500);
+  stroke-width: 0.5;
+}
+
+.accent .sub {
+  fill: var(--ember-300);
+}
+
+.store .box {
+  stroke-dasharray: 1.2 0.8;
+  stroke: rgb(238 236 231 / 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .packet {
+    display: none;
+  }
+}
+
+/* celular: o SVG encolhe com o card — compensa os textos (as caixas já comportam) */
+@media (max-width: 640px) {
+  .label {
+    font-size: 3.5px;
+  }
+
+  .sub {
+    font-size: 2.6px;
+  }
+
+  .edgeLabel {
+    font-size: 2.4px;
+  }
+}

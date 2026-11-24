@@ -1,0 +1,234 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: var(--z-header);
+  height: var(--header-h);
+  color: var(--color-text);
+  transition:
+    background-color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out),
+    backdrop-filter var(--dur-base) var(--ease-out);
+  border-bottom: 1px solid transparent;
+}
+
+.scrolled {
+  background: var(--glass-bg);
+  border-bottom-color: var(--color-line);
+  backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+}
+
+.open {
+  background: var(--ink-950);
+}
+
+.inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-radius: var(--radius-sm);
+}
+
+.brand svg {
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.brand:hover svg {
+  transform: translateY(-2px) rotate(-4deg);
+}
+
+.name span {
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+/* ---------- Navegação (desktop) ---------- */
+.nav {
+  --ind-x: 0px;
+  --ind-w: 0px;
+  --ind-o: 0;
+  position: relative;
+  display: none;
+  padding: 0.3rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-line);
+  background: var(--chip-bg);
+}
+
+.nav ul {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 0.125rem;
+}
+
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0 0.95rem;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+.nav a:hover,
+.nav a[aria-current] {
+  color: var(--color-text);
+}
+
+.indicator {
+  position: absolute;
+  top: 0.3rem;
+  bottom: 0.3rem;
+  left: 0;
+  width: var(--ind-w);
+  transform: translateX(var(--ind-x));
+  opacity: var(--ind-o);
+  border-radius: var(--radius-pill);
+  background: var(--color-line-strong);
+  transition:
+    transform 0.6s var(--ease-out),
+    width 0.6s var(--ease-out),
+    opacity var(--dur-base) var(--ease-out);
+}
+
+/* ---------- Ações ---------- */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lang {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-line);
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  transition:
+    color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out);
+}
+
+.lang:hover {
+  color: var(--color-text);
+  border-color: var(--color-line-strong);
+}
+
+.cta {
+  display: none;
+}
+
+.menuButton {
+  display: inline-grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-line-strong);
+}
+
+.menuButton svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* ---------- Menu mobile ---------- */
+.mobileMenu {
+  position: fixed;
+  inset: var(--header-h) 0 0;
+  z-index: var(--z-menu);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-6) var(--gutter) calc(var(--space-6) + env(safe-area-inset-bottom));
+  background: var(--ink-950);
+  overflow-y: auto;
+}
+
+.mobileMenu[hidden] {
+  display: none;
+}
+
+.mobileMenu ul {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.mobileMenu li {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: menu-in 0.6s var(--ease-out) forwards;
+  animation-delay: calc(var(--i) * 50ms + 40ms);
+}
+
+.mobileMenu nav a {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding: 0.6rem 0;
+  font-size: clamp(2rem, 1.4rem + 4vw, 2.75rem);
+  font-weight: 500;
+  letter-spacing: var(--tracking-display);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.menuIndex {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+}
+
+.menuFooter {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+@keyframes menu-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+:global(html.menu-open) {
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .cta {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 1000px) {
+  .nav {
+    display: block;
+  }
+
+  .menuButton {
+    display: none;
+  }
+}

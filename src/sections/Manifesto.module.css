@@ -1,0 +1,82 @@
+.manifesto {
+  position: relative;
+  z-index: var(--z-content);
+  height: 190svh;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  padding: calc(var(--header-h) + var(--space-6)) 0 var(--space-7);
+}
+
+.inner {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.statement {
+  max-width: 24ch;
+  font-size: clamp(1.75rem, 1.05rem + 2.9vw, 3.6rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  text-wrap: pretty;
+}
+
+.word {
+  transition: none;
+}
+
+.statement :global(.em) {
+  line-height: inherit;
+}
+
+.facts {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-5);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-line);
+}
+
+.fact {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.value {
+  font-size: var(--fs-xl);
+  font-weight: 500;
+  letter-spacing: var(--tracking-tight);
+}
+
+.text {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  max-width: 22rem;
+}
+
+@media (min-width: 760px) {
+  .facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+}
+
+@media (min-width: 900px) and (min-aspect-ratio: 1/1) {
+  .statement {
+    max-width: 22ch;
+  }
+}
